@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Визиты катеров на банки</h2>
+<table border="1">
+<tr><th>Рейс</th><th>Банка</th><th>Прибытие</th><th>Отплытие</th><th>Качество</th></tr>
+{% for v in visits %}
+<tr>
+  <td>{{ v.voyage_id }}</td>
+  <td>{{ v.bank_id }}</td>
+  <td>{{ v.arrival_date }}</td>
+  <td>{{ v.departure_date }}</td>
+  <td>{{ v.quality }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Добавить визит</h3>
+<form method="POST" action="{{ url_for('user_add_visit') }}">
+  <input name="voyage_id" placeholder="ID рейса" required>
+  <input name="bank_id" placeholder="ID банки" required>
+  <input name="arrival_date" placeholder="Прибытие YYYY-MM-DD" required>
+  <input name="departure_date" placeholder="Отплытие YYYY-MM-DD">
+  <input name="quality" placeholder="Качество" required>
+  <button type="submit">Добавить визит</button>
+</form>
+{% endblock %}
+

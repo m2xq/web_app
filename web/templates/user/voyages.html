@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Рейсы катеров</h2>
+<table border="1">
+<tr><th>Катер</th><th>Дата выхода</th><th>Дата возвращения</th></tr>
+{% for v in voyages %}
+<tr>
+  <td>{{ v.vessel_id }}</td>
+  <td>{{ v.depart_date }}</td>
+  <td>{{ v.return_date }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Добавить рейс</h3>
+<form method="POST" action="{{ url_for('user_add_voyage') }}">
+  <input name="vessel_id" placeholder="ID катера" required>
+  <input name="depart_date" placeholder="Дата выхода YYYY-MM-DD" required>
+  <input name="return_date" placeholder="Дата возвращения YYYY-MM-DD">
+  <button type="submit">Добавить рейс</button>
+</form>
+{% endblock %}
+

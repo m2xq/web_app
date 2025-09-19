@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Топ катеров по улову в период</h2>
+<form method="POST">
+  <input name="species" placeholder="Сорт рыбы">
+  <input name="date_from" placeholder="Дата от YYYY-MM-DD">
+  <input name="date_to" placeholder="Дата до YYYY-MM-DD">
+  <button type="submit">Показать</button>
+</form>
+
+{% if reports %}
+<table border="1">
+<tr><th>Катер</th><th>Общий улов</th></tr>
+{% for r in reports %}
+<tr>
+  <td>{{ r.vessel }}</td>
+  <td>{{ r.total }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}
+

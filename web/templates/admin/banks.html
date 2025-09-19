@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Банки</h2>
+<table border="1">
+<tr><th>Название</th><th>Локация</th></tr>
+{% for b in banks %}
+<tr>
+  <td>{{ b.name }}</td>
+  <td>{{ b.location }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Добавить банку</h3>
+<form method="POST" action="{{ url_for('admin_add_bank') }}">
+  <input name="name" placeholder="Название" required>
+  <input name="location" placeholder="Локация">
+  <button type="submit">Добавить</button>
+</form>
+{% endblock %}
+

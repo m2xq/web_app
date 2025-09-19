@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Рейсы по сорту и банке</h2>
+<form method="POST">
+  <input name="species" placeholder="Сорт рыбы" required>
+  <input name="bank_id" placeholder="ID Банки" required>
+  <button type="submit">Показать</button>
+</form>
+
+{% if reports %}
+<table border="1">
+<tr><th>Рейс</th><th>Катер</th><th>Вес улова</th></tr>
+{% for r in reports %}
+<tr>
+  <td>{{ r.voyage_id }}</td>
+  <td>{{ r.vessel }}</td>
+  <td>{{ r.weight }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}
+

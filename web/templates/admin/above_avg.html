@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Рейсы с уловом выше среднего (Банка {{ bank_id }})</h2>
+<table border="1">
+<tr><th>Рейс</th><th>Катер</th><th>Общий улов</th></tr>
+{% for r in reports %}
+<tr>
+  <td>{{ r.voyage_id }}</td>
+  <td>{{ r.vessel }}</td>
+  <td>{{ r.total }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Админ: Катера</h2>
+<table border="1">
+  <tr><th>Название</th><th>Тип</th><th>Водоизмещение</th><th>Дата постройки</th></tr>
+  {% for v in vessels %}
+  <tr>
+    <td>{{ v.name }}</td>
+    <td>{{ v.type }}</td>
+    <td>{{ v.displacement }}</td>
+    <td>{{ v.build_date }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+

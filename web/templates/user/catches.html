@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Улов</h2>
+<table border="1">
+<tr><th>Визит</th><th>Сорт</th><th>Вес</th></tr>
+{% for c in catches %}
+<tr>
+  <td>{{ c.visit_id }}</td>
+  <td>{{ c.species }}</td>
+  <td>{{ c.weight }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Добавить улов</h3>
+<form method="POST" action="{{ url_for('user_add_catch') }}">
+  <input name="visit_id" placeholder="ID визита" required>
+  <input name="species" placeholder="Сорт рыбы" required>
+  <input name="weight" placeholder="Вес" required>
+  <button type="submit">Добавить улов</button>
+</form>
+{% endblock %}
+
