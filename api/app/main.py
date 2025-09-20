@@ -5,6 +5,10 @@ from .db import get_db
 
 app = FastAPI(title="Fishing Fleet API")
 
+@app.on_event("startup")
+def on_startup():
+    models.Base.metadata.create_all(bind=db.engine)
+
 # --- USERS ---
 @app.post("/users")
 def create_user(user: dict, db: Session = Depends(get_db)):

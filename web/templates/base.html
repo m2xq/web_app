@@ -1,25 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Fishing Fleet</title>
 </head>
 <body>
 <nav>
+  <!-- Общие -->
   <a href="{{ url_for('index') }}">Главная</a> |
-  <a href="{{ url_for('user_vessels') }}">User Vessels</a> |
-  <a href="{{ url_for('admin_vessels') }}">Admin</a> |
-  <a href="{{ url_for('admin_reports') }}">Reports</a> |
+
   {% if session.username %}
     <span>Привет, {{ session.username }} ({{ session.role }})</span>
     <a href="{{ url_for('logout') }}">Выйти</a>
   {% else %}
-    <a href="{{ url_for('login') }}">Войти</a>
+    <a href="{{ url_for('login') }}">Войти</a> |
     <a href="{{ url_for('register') }}">Регистрация</a>
   {% endif %}
 </nav>
+
 <hr>
+
+{% if session.role == "user" %}
+  <h3>Пользовательское меню</h3>
+  <ul>
+    <li><a href="{{ url_for('user_vessels') }}">Мои суда</a></li>
+    <li><a href="{{ url_for('user_voyages') }}">Рейсы</a></li>
+    <li><a href="{{ url_for('user_visits') }}">Посещения банок</a></li>
+    <li><a href="{{ url_for('user_catches') }}">Мой улов</a></li>
+  </ul>
+{% endif %}
+
+{% if session.role == "admin" %}
+  <h3>Админское меню</h3>
+  <ul>
+    <li><a href="{{ url_for('admin_vessels') }}">Суда</a></li>
+    <li><a href="{{ url_for('admin_banks') }}">Банки</a></li>
+    <li><a href="{{ url_for('admin_reports') }}">Отчёты (общие)</a></li>
+    <li><a href="{{ url_for('top_vessels_period') }}">Топ судов за период</a></li>
+    <li><a href="{{ url_for('bank_avg') }}">Средний улов по банкам</a></li>
+    <!-- Здесь нужен bank_id, так что будет работать из контекста -->
+    <!-- <li><a href="{{ url_for('above_avg', bank_id=1) }}">Выше среднего по банке #1</a></li> -->
+    <li><a href="{{ url_for('species_bank') }}">Рейсы по виду рыбы и банке</a></li>
+  </ul>
+{% endif %}
+
+<hr>
+
 {% block content %}{% endblock %}
 </body>
 </html>
-

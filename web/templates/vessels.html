@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Катера</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th><th>Название</th><th>Тип</th><th>Водоизмещение</th><th>Дата постройки</th>
+    </tr>
+    {% for v in vessels %}
+    <tr>
+        <td>{{ v.id }}</td>
+        <td>{{ v.name }}</td>
+        <td>{{ v.type }}</td>
+        <td>{{ v.displacement }}</td>
+        <td>{{ v.build_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Добавить катер</h3>
+<form method="POST" action="{{ url_for('add_vessel') }}">
+    <input name="name" placeholder="Название" required>
+    <input name="type" placeholder="Тип">
+    <input name="displacement" placeholder="Водоизмещение">
+    <input name="build_date" type="date">
+    <button type="submit">Добавить</button>
+</form>
+{% endblock %}
